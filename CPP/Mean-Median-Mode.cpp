@@ -53,12 +53,23 @@ int main(void)
     
     Mean = Sum/Storage.size();
     cout<<"Mean : "<<Mean<<"\n";
+    
     if(Storage.size() % 2 != 0)
     {
         int Indexer = Storage.size();
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode has not been implemented yet "<<"\n";
+        Indexer = 0;
+        Median = 0.0f;
+        Mean = 0.0f;
+        Storage.clear();
+        cout<<"Would you like to go again? (y/n) "<<endl;
+        getline(cin, TempStorage);
+        if(TempStorage == "y" || TempStorage == "Y")
+        {
+            main();
+        }
     }
     else
     {
@@ -66,12 +77,17 @@ int main(void)
         Median = (Storage[Indexer/2 + 1] + Storage[Indexer])/2;
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode has not been implemented yet "<<"\n";
+        Indexer = 0;
+        Median = 0.0f;
+        Mean = 0.0f;
+        Storage.clear();
+        cout<<"Would you like to go again? (y/n) "<<endl;
+        getline(cin, TempStorage);
+        if(TempStorage == "y" || TempStorage == "Y")
+        {
+            main();
+        }
     }
     cout<<"Exiting... Return 0"<<"\n";
     return 0;
 }
-
-
-
-
-
