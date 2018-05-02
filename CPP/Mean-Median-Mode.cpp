@@ -5,6 +5,17 @@
 
 using namespace std;
 
+void ClearZero(vector<float> v)
+{
+    for(int n : v)
+    {
+        if(n == 0)
+        {
+            //v.erase(v.begin() + )
+        }
+    }
+}
+
 int main(void)
 {
     /* Init variables and tell user instructions*/
@@ -18,6 +29,7 @@ int main(void)
     float Mean = 0.0f;
     bool IsDone = false;
     float Sum = 0.0f;
+    bool IsError = false;
     /*End Init*/
     
     //start while
@@ -25,11 +37,11 @@ int main(void)
     {
     getline(cin, TempStorage);
     /* DO INPUT CHECKING TO SEE IF NUMBER*/
-        if(TempStorage == "d" || TempStorage == "D")
-        {
-            IsDone = true;
-             for(int n : Storage)
-        {
+            if(TempStorage == "d" || TempStorage == "D")
+            {
+                IsDone = true;
+                 for(int n : Storage)
+            {
             cout<<n<<"\n";
             Sum += n;
         }
@@ -37,7 +49,22 @@ int main(void)
         }
     
     //converting out input into a floating point value
+    try
+    {
     TempNumStorage = stof(TempStorage);
+    }
+    catch(const invalid_argument& ia)
+    {
+        IsError = true;
+        cerr<<"Invalid Input"<<endl<<ia.what()<<endl;
+        for(int n : Storage)
+        {
+            cout<<n<<endl;
+        }
+        
+        cout<<"Back : "<<Storage.back()<<endl;
+        ClearZero(Storage);
+    }
     //pushing the converted floating point value into our vector array
     Storage.push_back(TempNumStorage);
     
@@ -57,6 +84,7 @@ int main(void)
     if(Storage.size() % 2 != 0)
     {
         int Indexer = Storage.size();
+        
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode has not been implemented yet "<<"\n";
@@ -73,8 +101,8 @@ int main(void)
     }
     else
     {
-        float Indexer = Storage.size();
-        Median = (Storage[Indexer/2 + 1] + Storage[Indexer])/2;
+        int Indexer = Storage.size();
+        Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode has not been implemented yet "<<"\n";
         Indexer = 0;
