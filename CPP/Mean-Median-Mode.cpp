@@ -4,18 +4,20 @@
 #include<algorithm> //for std::sort and 
 
 using namespace std;
-
+/*
 void ClearZero(vector<float> v)
 {
     for(int n : v)
     {
         if(n == 0)
         {
-            //v.erase(v.begin() + )
+            vector<int>::iterator it;
+            it = Storage.end();
+            Storage.erase(it);
         }
     }
 }
-
+*/
 int main(void)
 {
     /* Init variables and tell user instructions*/
@@ -56,14 +58,15 @@ int main(void)
     catch(const invalid_argument& ia)
     {
         IsError = true;
-        cerr<<"Invalid Input"<<endl<<ia.what()<<endl;
-        for(int n : Storage)
-        {
-            cout<<n<<endl;
-        }
+        cerr<<"Invalid Input"<<endl;
         
-        cout<<"Back : "<<Storage.back()<<endl;
-        ClearZero(Storage);
+            for(int n : Storage)
+            {
+                vector<float>::iterator it;
+                it = Storage.end();
+                Storage.erase(it);
+                
+            }
     }
     //pushing the converted floating point value into our vector array
     Storage.push_back(TempNumStorage);
@@ -71,8 +74,7 @@ int main(void)
     //resetting our string and float storage;
     TempStorage = "";
     TempNumStorage = 0;
-    //done resetting.
-    
+
     }
     //end while
     
