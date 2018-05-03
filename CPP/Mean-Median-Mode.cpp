@@ -1,29 +1,17 @@
 #include<iostream> //duh..
 #include<vector> //for a vector array to hold our numbers
-#include<string> //for storing the user input
-#include<algorithm> //for std::sort and 
+#include<string> //for storing the user input with std::string
+#include<algorithm> //for std::sort to order our vector array
 
 using namespace std;
-/*
-void ClearZero(vector<float> v)
-{
-    for(int n : v)
-    {
-        if(n == 0)
-        {
-            vector<int>::iterator it;
-            it = Storage.end();
-            Storage.erase(it);
-        }
-    }
-}
-*/
+
 int main(void)
 {
     /* Init variables and tell user instructions*/
     cout<<"Put numbers in one by one followed by the return (enter) key between each one,"<<"\n"
     <<"You may put them in whatever order you want,"<<"\n"<<"after you enter your last number hit return,"
     "then hit the D key and return."<<"\n";
+    
     vector<float> Storage;
     string TempStorage;
     float TempNumStorage;
@@ -33,7 +21,7 @@ int main(void)
     float Sum = 0.0f;
     bool IsError = false;
     /*End Init*/
-    
+    int iter = 0;
     //start while
     while(!IsDone)
     {
@@ -59,18 +47,17 @@ int main(void)
     {
         IsError = true;
         cerr<<"Invalid Input"<<endl;
-        
-            for(int n : Storage)
-            {
-                vector<float>::iterator it;
-                it = Storage.end();
-                Storage.erase(it);
-                
-            }
     }
     //pushing the converted floating point value into our vector array
+    if(!IsError)
+    {
     Storage.push_back(TempNumStorage);
-    
+    }
+    else
+    {
+        Storage[Storage.size()] = TempNumStorage;
+        IsError = false;
+    }
     //resetting our string and float storage;
     TempStorage = "";
     TempNumStorage = 0;
