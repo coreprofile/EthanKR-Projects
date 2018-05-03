@@ -2,9 +2,9 @@
 #include<vector> //for a vector array to hold our numbers
 #include<string> //for storing the user input with std::string
 #include<algorithm> //for std::sort to order our vector array
-
+#include<map> //for std::map to hold a key value(our incrementer), and a key(our float value)
 using namespace std;
-
+/* foreach value in map read first and compare with < or > to see if big, if bigger than put that value in variable
 int main(void)
 {
     /* Init variables and tell user instructions*/
@@ -20,6 +20,9 @@ int main(void)
     bool IsDone = false;
     float Sum = 0.0f;
     bool IsError = false;
+    float Mode = 0.0f;
+    map<float, int> ModeMap;
+    
     /*End Init*/
     int iter = 0;
     //start while
@@ -51,7 +54,16 @@ int main(void)
     //pushing the converted floating point value into our vector array
     if(!IsError)
     {
-    Storage.push_back(TempNumStorage);
+        if(ModeMap.find(TempNumStorage) == ModeMap.end())
+        {
+            ModeMap.insert(pair<float, int> (TempNumStorage, 0));
+            Storage.push_back(TempNumStorage);
+        }
+        else
+        {
+            ModeMap.find(TempNumStorage)->second += 1;
+            Storage.push_back(TempNumStorage); 
+        }
     }
     else
     {
@@ -93,7 +105,8 @@ int main(void)
         int Indexer = Storage.size();
         Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
-        cout<<"Mode has not been implemented yet "<<"\n";
+        Mode = max_element(ModeMap);
+        cout<<"Mode : "<<Mode;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
