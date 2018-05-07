@@ -99,6 +99,7 @@ int main(void)
     int Index = 0;
     for(float n : ModeIndexer)
     {
+        //THIS IS COMPLETELY WRONG BECUASE THIS IS FIND THE BIGGEST NUMBER IN THE VECTOR NOT THE MODE
         if(n > CurrentMax)
         {
             //problem because we need to delete n - 1 in index to filter
