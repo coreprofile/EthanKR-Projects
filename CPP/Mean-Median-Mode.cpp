@@ -4,14 +4,15 @@
 #include<algorithm> //for std::sort to order our vector array
 #include<map> //for std::map to hold a key value(our incrementer), and a key(our float value)
 using namespace std;
-/* foreach value in map read first and compare with < or > to see if big, if bigger than put that value in variable
+
+//to do : I think median is returning the wrong value so check that out, but i need to finish Mode Marked with //FIX NOW
 int main(void)
 {
     /* Init variables and tell user instructions*/
     cout<<"Put numbers in one by one followed by the return (enter) key between each one,"<<"\n"
     <<"You may put them in whatever order you want,"<<"\n"<<"after you enter your last number hit return,"
     "then hit the D key and return."<<"\n";
-    
+    vector<float> ModeIndexer;
     vector<float> Storage;
     string TempStorage;
     float TempNumStorage;
@@ -22,7 +23,7 @@ int main(void)
     bool IsError = false;
     float Mode = 0.0f;
     map<float, int> ModeMap;
-    
+    map<float, int>::iterator ITR;
     /*End Init*/
     int iter = 0;
     //start while
@@ -54,16 +55,13 @@ int main(void)
     //pushing the converted floating point value into our vector array
     if(!IsError)
     {
-        if(ModeMap.find(TempNumStorage) == ModeMap.end())
-        {
-            ModeMap.insert(pair<float, int> (TempNumStorage, 0));
-            Storage.push_back(TempNumStorage);
-        }
-        else
-        {
+            if(ModeMap.find(TempNumStorage) == ModeMap.end())
+            {
+                ModeMap.insert(pair<float, int>(TempNumStorage, 0));
+            }
+            else
             ModeMap.find(TempNumStorage)->second += 1;
-            Storage.push_back(TempNumStorage); 
-        }
+            Storage.push_back(TempNumStorage);
     }
     else
     {
@@ -81,14 +79,40 @@ int main(void)
     
     Mean = Sum/Storage.size();
     cout<<"Mean : "<<Mean<<"\n";
+    float CurrentMode = 0;
+    //iterating through map to pick out possible Modes, not very accurate or fast but the ModeIndexer will filter them into the right place.
     
+    
+    //FIX NOW
+    for(ITR = ModeMap.begin(); ITR != ModeMap.end(); ++ITR)
+    {
+        if(ITR->second > CurrentMode)
+        {
+            CurrentMode = ITR->first;
+            ModeIndexer.push_back(CurrentMode);
+        }
+        cout<<ITR->first;
+        cout<<ITR->second;
+    }
+    bool IsFinished = false;
+    float CurrentMax = 0.0f;
+    int Index = 0;
+    for(float n : ModeIndexer)
+    {
+        if(n > CurrentMax)
+        {
+            //problem because we need to delete n - 1 in index to filter
+            cout<<ModeIndexer[n];
+        }
+    }
+    Mode = CurrentMode;
     if(Storage.size() % 2 != 0)
     {
         int Indexer = Storage.size();
         
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
-        cout<<"Mode has not been implemented yet "<<"\n";
+        cout<<"Mode "<<Mode<<std::endl;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
@@ -105,8 +129,7 @@ int main(void)
         int Indexer = Storage.size();
         Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
-        Mode = max_element(ModeMap);
-        cout<<"Mode : "<<Mode;
+        cout<<"Mode : "<<Mode<<std::endl;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
