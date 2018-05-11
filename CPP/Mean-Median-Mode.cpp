@@ -102,6 +102,13 @@ int main(void)
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
+        cout<<"Your pretty ordered data set : "<<endl;
+        sort(Storage.begin(), Storage.end());
+        for(int n : Storage)
+        {
+            cout<<n<<", ";
+        }
+        cout<<"\n";
         Storage.clear();
         ModeMap.clear();
         
@@ -121,7 +128,15 @@ int main(void)
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
+        sort(Storage.begin(), Storage.end());
+        cout<<"Your pretty ordered data set : "<<endl;
+        for(int n : Storage)
+        {
+            cout<<n<<", ";
+        }
+        cout<<"\n";
         Storage.clear();
+        ModeMap.clear();
         cout<<"Would you like to go again? (y/n) "<<endl;
         getline(cin, TempStorage);
         if(TempStorage == "y" || TempStorage == "Y")
