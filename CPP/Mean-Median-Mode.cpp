@@ -15,7 +15,7 @@ int main(void)
     cout<<"Put numbers in one by one followed by the return (enter) key between each one,"<<"\n"
     <<"You may put them in whatever order you want,"<<"\n"<<"after you enter your last number hit return,"
     "then hit the D key and return."<<"\n"<<"THIS PROGRAM DOES NOT FIND MODE IF THERE IS MULTIPLE MODES, BUT IT WILL TRY!"<<"\n";
-    vector<float> ModeIndexer;
+    
     vector<float> Storage;
     string TempStorage;
     float TempNumStorage;
@@ -33,14 +33,14 @@ int main(void)
     {
     getline(cin, TempStorage);
     /* DO INPUT CHECKING TO SEE IF NUMBER*/
-            if(TempStorage == "d" || TempStorage == "D")
+        if(TempStorage == "d" || TempStorage == "D")
+        {
+            IsDone = true;
+            for(int n : Storage)
             {
-                IsDone = true;
-                 for(int n : Storage)
-            {
-            Sum += n;
-        }
-            break;
+                Sum += n;
+            }
+        break;
         }
     
     //converting out input into a floating point value
@@ -91,10 +91,7 @@ int main(void)
         }
     }
     Mode = CurrentMode;
-    
-    bool IsFinished = false;
     float CurrentMax = 0.0f;
-    int Index = 0;
 
     if(Storage.size() % 2 != 0)
     {
@@ -107,6 +104,8 @@ int main(void)
         Median = 0.0f;
         Mean = 0.0f;
         Storage.clear();
+        ModeMap.clear();
+        
         cout<<"Would you like to go again? (y/n) "<<endl;
         getline(cin, TempStorage);
         if(TempStorage == "y" || TempStorage == "Y")
