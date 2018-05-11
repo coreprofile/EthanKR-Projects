@@ -4,7 +4,6 @@
 #include<algorithm> //for std::sort to order our vector array
 #include<map> //for std::map to hold a key value(our incrementer), and a key(our float value)
 #include<iterator>
-#include<list>
 
 using namespace std;
 
