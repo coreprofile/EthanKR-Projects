@@ -22,6 +22,39 @@ struct Vector2
     {
         return Add(other);
     }
+    
+    
+    Vector2 Mul(const Vector2& other) const
+    {
+        return Vector2(x * other.x, y * other.y);
+    }
+      Vector2 operator*(const Vector2& other) const
+    {
+        return Mul(other);
+    }
+    
+    
+    
+    Vector2 Sub(const Vector2& other) const
+    {
+        return Vector2(x - other.x, y - other.y);
+    }
+      Vector2 operator-(const Vector2& other) const
+    {
+        return Sub(other);
+    }
+    
+    
+    Vector2 Div(const Vector2& other) const
+    {
+        return Vector2(x / other.x, y / other.y);
+    }
+      Vector2 operator/(const Vector2& other) const
+    {
+        return Div(other);
+    }
+    
+    
     friend ostream& operator<<(ostream& stream, const Vector2& other)
     {
         stream<<other.x<<", "<<other.y<<endl;
@@ -34,9 +67,9 @@ int main()
     Vector2 vec(1.0f, 0.0f);
     Vector2 vec2(50.0f, 1.0f);
     
+    Vector2 Final = vec + vec2;
     
-    
-    cout<<vec + vec2<<endl;
+    cout<<Final<<endl;
     
     return 0;
 }
