@@ -20,6 +20,7 @@ int main(void)
     float TempNumStorage;
     float Median = 0.0f;
     float Mean = 0.0f;
+    float Range = 0.0f;
     bool IsDone = false;
     float Sum = 0.0f;
     bool IsError = false;
@@ -99,11 +100,13 @@ int main(void)
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode "<<Mode<<std::endl;
+        sort(Storage.begin(), Storage.end());
+        Range = Storage.end() - Storage.begin() - 1;
+        cout<<"Range : "<<Range<<endl;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
         cout<<"Your pretty ordered data set : "<<endl;
-        sort(Storage.begin(), Storage.end());
         for(int n : Storage)
         {
             cout<<n<<", ";
@@ -125,10 +128,11 @@ int main(void)
         Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
         cout<<"Mode : "<<Mode<<std::endl;
+        sort(Storage.begin(), Storage.end());
+        Range = Storage.end() - Storage.begin() - 1;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
-        sort(Storage.begin(), Storage.end());
         cout<<"Your pretty ordered data set : "<<endl;
         for(int n : Storage)
         {
