@@ -98,13 +98,22 @@ int main(void)
         
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
-        cout<<"Mode "<<Mode<<std::endl;
+        if(Mode != 0)
+        {
+        cout<<"Mode : "<<Mode<<std::endl;
+        }
+        else
+        {
+            cout<<"Mode : No Mode"<<endl;
+        }
         sort(Storage.begin(), Storage.end());
         Range = Storage.end() - Storage.begin() - 1;
         cout<<"Range : "<<Range<<endl;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
+        Mode = 0.0f;
+        Range = 0.0f;
         cout<<"Your pretty ordered data set : "<<endl;
         for(int n : Storage)
         {
@@ -126,12 +135,21 @@ int main(void)
         int Indexer = Storage.size();
         Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
+        if(Mode != 0)
+        {
         cout<<"Mode : "<<Mode<<std::endl;
+        }
+        else
+        {
+            cout<<"Mode : No Mode"<<endl;
+        }
         sort(Storage.begin(), Storage.end());
         Range = Storage.end() - Storage.begin() - 1;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
+        Mode = 0.0f;
+        Range = 0.0f;
         cout<<"Your pretty ordered data set : "<<endl;
         for(int n : Storage)
         {
