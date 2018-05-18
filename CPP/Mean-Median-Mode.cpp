@@ -3,7 +3,6 @@
 #include<string> //for storing the user input with std::string
 #include<algorithm> //for std::sort to order our vector array
 #include<map> //for std::map to hold a key value(our incrementer), and a key(our float value)
-#include<iterator>
 
 using namespace std;
 
