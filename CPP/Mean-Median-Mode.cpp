@@ -91,7 +91,7 @@ int main(void)
     }
     Mode = CurrentMode;
     float CurrentMax = 0.0f;
-
+    //IF ODD AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
     if(Storage.size() % 2 != 0)
     {
         int Indexer = Storage.size();
@@ -107,7 +107,7 @@ int main(void)
             cout<<"Mode : No Mode"<<endl;
         }
         sort(Storage.begin(), Storage.end());
-        Range = Storage.end() - Storage.begin() - 1;
+        Range = Storage.back() - Storage.front();
         cout<<"Range : "<<Range<<endl;
         Indexer = 0;
         Median = 0.0f;
@@ -130,6 +130,7 @@ int main(void)
             main();
         }
     }
+    //IF EVEN AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
     else
     {
         int Indexer = Storage.size();
@@ -144,7 +145,8 @@ int main(void)
             cout<<"Mode : No Mode"<<endl;
         }
         sort(Storage.begin(), Storage.end());
-        Range = Storage.end() - Storage.begin() - 1;
+        Range = Storage.back() - Storage.front();
+        cout<<"Range : "<<Range<<endl;
         Indexer = 0;
         Median = 0.0f;
         Mean = 0.0f;
