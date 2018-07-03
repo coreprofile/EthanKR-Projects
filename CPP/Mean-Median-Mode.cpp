@@ -11,9 +11,9 @@ int main(void)
 {
     /* Init variables and tell user instructions*/
     cout<<"Put numbers in one by one followed by the return (enter) key between each one,"<<"\n"
-    <<"You may put them in whatever order you want,"<<"\n"<<"after you enter your last number hit return,"
-    "then hit the D key and return."<<"\n"<<"THIS PROGRAM DOES NOT FIND MODE IF THERE IS MULTIPLE MODES, BUT IT WILL TRY!"<<"\n";
-    
+        <<"You may put them in whatever order you want,"<<"\n"<<"after you enter your last number hit return,"
+                                                                "then hit the D key and return."<<"\n"<<"THIS PROGRAM DOES NOT FIND MODE IF THERE IS MULTIPLE MODES, BUT IT WILL TRY!"<<"\n";
+
     vector<float> Storage;
     string TempStorage;
     float TempNumStorage;
@@ -30,8 +30,8 @@ int main(void)
     //start while
     while(!IsDone)
     {
-    getline(cin, TempStorage);
-    /* DO INPUT CHECKING TO SEE IF NUMBER*/
+        getline(cin, TempStorage);
+        /* DO INPUT CHECKING TO SEE IF NUMBER*/
         if(TempStorage == "d" || TempStorage == "D")
         {
             IsDone = true;
@@ -39,45 +39,45 @@ int main(void)
             {
                 Sum += n;
             }
-        break;
+            break;
         }
-    
-    //converting out input into a floating point value
-    try
-    {
-    TempNumStorage = stof(TempStorage);
-    }
-    catch(const invalid_argument& ia)
-    {
-        IsError = true;
-        cerr<<"Invalid Input"<<endl;
-    }
-    //WE ALREADY HAVE THE MODE IN THE MAP WE JUST NEED TO EXTRACT
-    //pushing the converted floating point value into our vector array
-    if(!IsError)
-    {
+
+        //converting out input into a floating point value
+        try
+        {
+            TempNumStorage = stof(TempStorage);
+        }
+        catch(const invalid_argument& ia)
+        {
+            IsError = true;
+            cerr<<"Invalid Input"<<endl;
+        }
+        //WE ALREADY HAVE THE MODE IN THE MAP WE JUST NEED TO EXTRACT
+        //pushing the converted floating point value into our vector array
+        if(!IsError)
+        {
             if(ModeMap.find(TempNumStorage) == ModeMap.end())
             {
                 ModeMap.insert(pair<float, int>(TempNumStorage, 0));
             }
             else
-            ModeMap.find(TempNumStorage)->second += 1;
+                ModeMap.find(TempNumStorage)->second += 1;
             Storage.push_back(TempNumStorage);
-    }
-    else
-    {
-        Storage[Storage.size()] = TempNumStorage;
-        IsError = false;
-    }
-    //resetting our string and float storage;
-    TempStorage = "";
-    TempNumStorage = 0;
+        }
+        else
+        {
+            Storage[Storage.size()] = TempNumStorage;
+            IsError = false;
+        }
+        //resetting our string and float storage;
+        TempStorage = "";
+        TempNumStorage = 0;
 
     }
     //end while
-    
+    //part of algorithm header
     sort(Storage.begin(), Storage.end());
-    
+
     Mean = Sum/Storage.size();
     cout<<"Mean : "<<Mean<<"\n";
     int CurrentMode = 0;
@@ -95,12 +95,12 @@ int main(void)
     if(Storage.size() % 2 != 0)
     {
         int Indexer = Storage.size();
-        
+
         Median = Storage[Indexer/2];
         cout<<"Median : "<<Median<<"\n";
         if(Mode != 0)
         {
-        cout<<"Mode : "<<Mode<<std::endl;
+            cout<<"Mode : "<<Mode<<std::endl;
         }
         else
         {
@@ -122,7 +122,7 @@ int main(void)
         cout<<"\n";
         Storage.clear();
         ModeMap.clear();
-        
+
         cout<<"Would you like to go again? (y/n) "<<endl;
         getline(cin, TempStorage);
         if(TempStorage == "y" || TempStorage == "Y")
@@ -130,15 +130,15 @@ int main(void)
             main();
         }
     }
-    //IF EVEN AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
+        //IF EVEN AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
     else
     {
         int Indexer = Storage.size();
-        Median = (Storage[Indexer/2 + 1] + Storage[Indexer / 2]) /2;
+        Median = (Storage[Indexer/2 - 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
         if(Mode != 0)
         {
-        cout<<"Mode : "<<Mode<<std::endl;
+            cout<<"Mode : "<<Mode<<std::endl;
         }
         else
         {
