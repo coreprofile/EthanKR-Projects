@@ -6,7 +6,6 @@
 
 using namespace std;
 
-//to do : I think median is returning the wrong value so check that out, but i need to finish Mode Marked with //FIX NOW
 int main(void)
 {
     /* Init variables and tell user instructions*/
@@ -58,12 +57,15 @@ int main(void)
         {
             if(ModeMap.find(TempNumStorage) == ModeMap.end())
             {
+                //if we cant find the number we entered in the map then we insert with a counter of zero
                 ModeMap.insert(pair<float, int>(TempNumStorage, 0));
             }
             else
+                //if we do find it we add one to its counter
                 ModeMap.find(TempNumStorage)->second += 1;
-            Storage.push_back(TempNumStorage);
+                Storage.push_back(TempNumStorage);
         }
+        //FIX seg fault we cant find the first value
         else
         {
             Storage[Storage.size()] = TempNumStorage;
@@ -74,23 +76,42 @@ int main(void)
         TempNumStorage = 0;
 
     }
-    //end while
-    //part of algorithm header
-    sort(Storage.begin(), Storage.end());
 
+    sort(Storage.begin(), Storage.end());
+    //WHERE SECOND IS THE INDEX AND FIRST IS THE FLOATING POINT VALUE
     Mean = Sum/Storage.size();
     cout<<"Mean : "<<Mean<<"\n";
     int CurrentMode = 0;
+    bool IsFinished = false;
+
+    // push to another vector array then once done push new array to old and clear new
 
     for(ITR = ModeMap.begin(); ITR != ModeMap.end(); ++ITR)
     {
-        if(ITR->second > CurrentMode)
+
+        if (ITR->second > CurrentMode)
         {
+            std::cout<<"DELETED ITR--"<<std::endl;
+            IsFinished = false;
             CurrentMode = ITR->first;
+            ModeMap.erase(ITR--);
+        } else
+            IsFinished = true;
+        if(IsFinished)
+        {
+            //iterating through final map
+            for(ITR = ModeMap.begin(); ITR != ModeMap.end(); ++ITR)
+            {
+                //FIX LOOP
+                std::cout<<"Number : "<<ITR->first<<std::endl;
+            }
         }
     }
+
     Mode = CurrentMode;
     float CurrentMax = 0.0f;
+
+
     //IF ODD AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
     if(Storage.size() % 2 != 0)
     {
@@ -114,7 +135,7 @@ int main(void)
         Mean = 0.0f;
         Mode = 0.0f;
         Range = 0.0f;
-        cout<<"Your pretty ordered data set : "<<endl;
+        cout<<"Your ordered data set : "<<endl;
         for(int n : Storage)
         {
             cout<<n<<", ";
@@ -125,7 +146,7 @@ int main(void)
 
         cout<<"Would you like to go again? (y/n) "<<endl;
         getline(cin, TempStorage);
-        if(TempStorage == "y" || TempStorage == "Y")
+        if(TempStorage == "y" || TempStorage == "Y" || TempStorage == "yes" || TempStorage == "Yes")
         {
             main();
         }
@@ -133,6 +154,7 @@ int main(void)
         //IF EVEN AMOUNT OF ELEMENTS IN DATA SET THEN CALL THIS
     else
     {
+        //CHANGE PLUS 1 ON FIRST
         int Indexer = Storage.size();
         Median = (Storage[Indexer/2 - 1] + Storage[Indexer / 2]) /2;
         cout<<"Median : "<<Median<<"\n";
@@ -152,9 +174,10 @@ int main(void)
         Mean = 0.0f;
         Mode = 0.0f;
         Range = 0.0f;
-        cout<<"Your pretty ordered data set : "<<endl;
+        cout<<"Your ordered data set : "<<endl;
         for(int n : Storage)
         {
+
             cout<<n<<", ";
         }
         cout<<"\n";
@@ -167,6 +190,5 @@ int main(void)
             main();
         }
     }
-    cout<<"Exiting... Return 0"<<"\n";
     return 0;
 }
